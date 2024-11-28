@@ -94,6 +94,44 @@ O **LFIvader** realiza varreduras automáticas em URLs alvo, testando uma lista 
 
 ---
 
+## 📁 Instalando como Comando Global
+
+Para facilitar o uso da ferramenta, você pode instalá-la como um comando global no seu sistema. Siga os passos abaixo:
+
+1. **Compile o executável da ferramenta**:
+    - No Linux:
+        ```bash
+        gcc -o LFIvader LFIvader.c -lcurl
+        ```
+    - No Windows:
+        (Não aplicável diretamente. Recomendado criar um script de instalação para ambientes Windows).
+
+2. **Copie o executável para um diretório global**:
+    No Linux, copie o arquivo compilado para o diretório `/usr/local/bin`, que está no **PATH** padrão:
+    ```bash
+    sudo cp LFIvader /usr/local/bin/
+    ```
+
+3. **Verifique se foi instalado corretamente**:
+    Execute o comando abaixo para confirmar:
+    ```bash
+    LFIvader
+    ```
+
+    Se a ferramenta executar corretamente, significa que a instalação foi bem-sucedida!
+
+4. **Caso queira desinstalar**:
+    Basta remover o arquivo do diretório global:
+    ```bash
+    sudo rm /usr/local/bin/LFIvader
+    ```
+
+*Agora você pode usar o comando `LFIvader` diretamente de qualquer lugar no terminal sem precisar especificar o caminho completo.*
+
+**Observação**: Se você deseja adicionar essa funcionalidade no **Windows**, precisará configurar um script para mover o executável para um diretório do PATH ou instruir os usuários a adicionar o caminho manualmente.
+
+---
+
 ## **⚠️ Aviso de Uso**
 
 Esta ferramenta foi desenvolvida exclusivamente para testes de segurança em ambientes próprios ou com autorização explícita do proprietário.  
