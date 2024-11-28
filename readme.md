@@ -3,9 +3,7 @@
 ![Editor: Vim](https://img.shields.io/badge/Editor-Vim-green.svg?logo=vim&logoColor=white) 
 [![Build Status](https://img.shields.io/badge/Status-Stable-green.svg)]() 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE) 
-[![Language: C](https://img.shields.io/badge/Language-C-lightblue.svg)](https://en.wikipedia.org/wiki/C_(programming_language)) 
-[![Test Coverage](https://img.shields.io/badge/Coverage-90%25-green.svg)]() 
-[![Downloads](https://img.shields.io/badge/Downloads-1k-blue.svg)]() 
+[![Language: C](https://img.shields.io/badge/Language-C-lightblue.svg)](https://en.wikipedia.org/wiki/C_(programming_language))  
 
 
 > **LFIvader** é uma ferramenta para detectar vulnerabilidades do tipo Local File Inclusion (LFI) em servidores web.  
