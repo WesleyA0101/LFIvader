@@ -1,4 +1,4 @@
-# 🛡️ **LFIvader**  
+ # 🛡️ **LFIvader**  
 
 ![Editor: Vim](https://img.shields.io/badge/Editor-Vim-green.svg?logo=vim&logoColor=white) 
 [![Build Status](https://img.shields.io/badge/Status-Stable-green.svg)]() 
@@ -6,37 +6,42 @@
 [![Language: C](https://img.shields.io/badge/Language-C-lightblue.svg)](https://en.wikipedia.org/wiki/C_(programming_language))  
 
 
-> **LFIvader** é uma ferramenta para detectar vulnerabilidades do tipo Local File Inclusion (LFI) em servidores web.  
-> Projetada com foco em precisão e eficiência, ela é ideal para uso em ambientes profissionais e auditorias de segurança.
+**LFIvader** é uma ferramenta poderosa para **detectar vulnerabilidades de Local File Inclusion (LFI)** em servidores web. Desenvolvida para ser confiável e eficiente, é uma aliada indispensável para profissionais de segurança em auditorias e testes de intrusão.
 
 ---
 
-## **📜 Visão Geral**
+## **📖 Sobre o Projeto**
 
-Local File Inclusion (LFI) é uma vulnerabilidade em aplicações web que permite a inclusão de arquivos do servidor através de entradas malvalidadas.  
-O **LFIvader** realiza varreduras automáticas em URLs alvo, testando uma lista abrangente de vetores conhecidos para encontrar vulnerabilidades e exibir os resultados com formatação clara.
+O LFI (Local File Inclusion) é uma vulnerabilidade comum em aplicações web que permite a inclusão de arquivos sensíveis do servidor através de entradas malvalidadas.  
+O **LFIvader** automatiza a detecção desses pontos críticos, utilizando vetores conhecidos para identificar possíveis falhas com alta precisão.
 
----
-
-## **✨ Recursos**
-
-- **Detecção Automática**: Testa diversos vetores LFI conhecidos.
-- **Resultados Formatados**: Exibe os dados vulneráveis de forma organizada.
-- **Relatórios Detalhados**: Salva os resultados automaticamente em arquivos locais.
-- **Compatibilidade Multiplataforma**: Funciona em sistemas Linux e Windows.
+### **Principais Diferenciais**:
+- **Automação Completa**: Varredura detalhada de URLs com múltiplos vetores de ataque.
+- **Resultados Precisos**: Relatórios organizados e salvos automaticamente para referência futura.
+- **Interface Intuitiva**: Usabilidade pensada para profissionais e iniciantes.
+- **Multiplataforma**: Suporte para Linux e Windows.
 
 ---
 
-## **⚡ Requisitos**
+## **🚀 Recursos**
 
-- **Sistema Operacional**: Linux ou Windows.
-- **Compilador**: GCC ou MinGW (para Windows).
-- **Bibliotecas Necessárias**:
-  - [libcurl](https://curl.se/libcurl/)
-  - [unistd.h](https://pubs.opengroup.org/onlinepubs/009695399/functions/unistd.h.html) (Linux)
-  - [stdio.h](https://en.wikipedia.org/wiki/C_standard_library)
-  - [stdlib.h](https://en.wikipedia.org/wiki/C_standard_library)
-  - [string.h](https://en.wikipedia.org/wiki/C_standard_library)
+✅ **Varredura Inteligente**: Testa automaticamente vetores conhecidos para vulnerabilidades de LFI.  
+✅ **Relatórios Detalhados**: Salva resultados em arquivos locais, com formatação clara e acessível.  
+✅ **Modularidade**: Fácil de integrar e personalizar para auditorias específicas.  
+✅ **Desempenho Superior**: Desenvolvido em C para garantir velocidade e eficiência.  
+
+---
+
+## **🛠️ Requisitos do Sistema**
+
+- **Sistema Operacional**:  
+  - Linux ou Windows.
+- **Compilador**:  
+  - GCC (Linux) ou MinGW (Windows).
+- **Dependências**:  
+  - [libcurl](https://curl.se/libcurl/): Biblioteca para requisições HTTP.  
+  - [unistd.h](https://pubs.opengroup.org/onlinepubs/009695399/functions/unistd.h.html) (apenas Linux).  
+  - Outras: `stdio.h`, `stdlib.h`, `string.h`.
 
 ---
 
@@ -175,6 +180,6 @@ Visite meu perfil no GitHub para explorar outros projetos:
 - [Documentação do cURL](https://curl.se/libcurl/c/)
 - [Introdução a LFI](https://owasp.org/www-community/attacks/Path_Traversal)
 
-
+<div align="center"> <strong>⭐ Se você gostou deste projeto, não se esqueça de dar uma estrela no repositório! ⭐</strong> </div>
 
 
