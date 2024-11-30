@@ -13,7 +13,7 @@
 ## **📖 Sobre o Projeto**
 
 O LFI (Local File Inclusion) é uma vulnerabilidade comum em aplicações web que permite a inclusão de arquivos sensíveis do servidor através de entradas malvalidadas.  
-O **LFIvader** automatiza a detecção desses pontos críticos, utilizando vetores conhecidos para identificar possíveis.
+O **LFIvader** automatiza a detecção desses pontos críticos, utilizando vetores conhecidos para identificar possíveis falhas.
 
 ### **Principais Diferenciais**:
 - **Automação Completa**: Varredura detalhada de URLs com múltiplos vetores de ataque.
